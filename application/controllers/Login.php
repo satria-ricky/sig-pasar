@@ -53,7 +53,7 @@ class Login extends CI_Controller {
         $this->session->unset_userdata('id_username');
 
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil logout!</div>');
-        redirect('c_login');
+        redirect('login');
     }
 
     public function blocked(){

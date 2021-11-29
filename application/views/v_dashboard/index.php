@@ -1,91 +1,4 @@
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/foto/pasar/'); ?>default.png">
-    <?= $title; ?>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
-
-    
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
-
-  <link rel="stylesheet" href="<?= base_url() ?>leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
-<script src="<?= base_url() ?>leaflet-locatecontrol/src/L.Control.Locate.js"></script>
-
-<link rel="stylesheet" href="<?= base_url() ?>leaflet-search/src/leaflet-search.css" />
-<script src="<?= base_url() ?>leaflet-search/src/leaflet-search.js"></script>
-
-
-    <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="<?= base_url('assets/dashboard/'); ?>dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="<?= base_url('assets/dashboard/'); ?>navbar.css" rel="stylesheet">
-    <link href="<?= base_url('assets/dashboard/'); ?>carousel.css" rel="stylesheet">
-  </head>
-  <body>
-    
-<header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container"> 
-        <a class="navbar-brand font-weight-bolder page-scroll" href="#"> SIG | PASAR TRADISIONAL </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto" >
-           
-            <li class="nav-item dropdown no-arrow ">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                 <!-- <i class="fas fa-cog ml-2"></i>  -->
-                 Aksi
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item text-capitalize" href="<?= base_url(); ?>dashboard/tambah">
-                  <i class="fas fa-plus fa-sm fa-fw"></i>
-                  Tambah data ?
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-capitalize" href="<?= base_url(); ?>auth">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw"></i> Login
-                </a>
-              </div>
-            </li>
-
-          </div>
-        </div>
-      </div>
-    </nav>
-</header>
 
 <main>
 
@@ -162,17 +75,8 @@
 
   
 
-    <!-- /END THE FEATURETTES -->
-    <hr class="featurette-divider">
-  </div><!-- /.container -->
 
 
-  <!-- FOOTER -->
-  <footer class="container">
-    <!-- <p class="float-end"><a href="#">Back to top</a></p> -->
-    <p>&copy; 2016–2021 Subhan.</p>
-  </footer>
-</main>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

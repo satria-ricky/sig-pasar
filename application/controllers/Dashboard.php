@@ -10,7 +10,11 @@ class Dashboard extends CI_Controller {
     public function index(){
     	$v_data['list'] = $this->M_bulu_tangkis->selectAllverifikasi();
         $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-        $this->load->view('v_dashboard/index', $v_data);		 
+
+        $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."/dashboard/tambah'><i class='fas fa-plus fa-sm fa-fw'></i>Tambah data ?</a>";
+        $this->load->view('templates/header_dashboard', $v_data);
+        $this->load->view('v_dashboard/index', $v_data);
+        $this->load->view('templates/footer_dashboard', $v_data);		 
 	}
 
 	public function load_data_to_tabel(){
@@ -21,7 +25,7 @@ class Dashboard extends CI_Controller {
 //dashboard
 	public function tambah(){
                
-        $this->form_validation->set_rules('nama_lapangan', 'Nama_lapangan', 'required|trim', [
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
             'required' => 'Form tidak boleh kosong!',
         ]);
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
@@ -34,46 +38,41 @@ class Dashboard extends CI_Controller {
             'required' => 'Silahkan set titik koordinat!',
         ]);
 
-        $this->form_validation->set_rules('jumlah_lapangan','Jam_buka','required|trim', [
-            'required' => 'Form tidak boleh kosong!',
-        ]);
         
         if($this->form_validation->run() == false){
+            $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
+            $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."/dashboard'><i class='fas fa-arrow-left'></i> Kembali ?</a>";
+            $this->load->view('templates/header_dashboard', $v_data);
             $this->load->view('v_dashboard/tambah');
+            $this->load->view('templates/footer_dashboard', $v_data);
         }else{
-            $v_nama     = $this->input->post('nama_lapangan');
+            $v_nama     = $this->input->post('nama');
             $v_alamat = $this->input->post('alamat');
             $v_longitude = $this->input->post('longitude');
             $v_latitude = $this->input->post('latitude');
             $v_jam_buka = $this->input->post('jam_buka');
             $v_jam_tutup = $this->input->post('jam_tutup');
-            $v_jumlah_lapangan = $this->input->post('jumlah_lapangan');
-            $v_biaya_sewa = $this->input->post('biaya_sewa');
-            $v_kontak = $this->input->post('kontak');
             $upload_foto = $_FILES['foto']['name'];
 
             if($upload_foto){
                 
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']     = '15000';
-                $config['upload_path'] = './assets/foto/bt/';
+                $config['upload_path'] = './assets/foto/pasar/';
                     
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto')){
                     $v_nama_foto = $this->upload->data('file_name');             
                     $v_data = [
-                        'bt_nama' => $v_nama,
-                        'bt_alamat' => $v_alamat,
+                        'pasar_nama' => $v_nama,
+                        'pasar_alamat' => $v_alamat,
                         'longitude' => $v_longitude,
                         'latitude' => $v_latitude,
-                        'bt_jam_buka' => $v_jam_buka,
-                        'bt_jam_tutup' => $v_jam_tutup,
-                        'bt_status' => '2',
-                        'bt_jumlah' => $v_jumlah_lapangan,
-                        'bt_biaya' => $v_biaya_sewa,
-                        'bt_kontak' => $v_kontak,
-                        'bt_foto' => $v_nama_foto
+                        'pasar_jam_buka' => $v_jam_buka,
+                        'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_status' => '2',
+                        'pasar_foto' => $v_nama_foto
                     ];
                 }
                 else
@@ -83,17 +82,14 @@ class Dashboard extends CI_Controller {
 
             }else{
                 $v_data = [
-                    'bt_nama' => $v_nama,
-                    'bt_alamat' => $v_alamat,
-                    'longitude' => $v_longitude,
-                    'latitude' => $v_latitude,
-                    'bt_jam_buka' => $v_jam_buka,
-                    'bt_jam_tutup' => $v_jam_tutup,
-                    'bt_status' => '2',
-                    'bt_jumlah' => $v_jumlah_lapangan,
-                    'bt_biaya' => $v_biaya_sewa,
-                    'bt_kontak' => $v_kontak,
-                    'bt_foto' => 'bt_default.jpg'
+                    'pasar_nama' => $v_nama,
+                        'pasar_alamat' => $v_alamat,
+                        'longitude' => $v_longitude,
+                        'latitude' => $v_latitude,
+                        'pasar_jam_buka' => $v_jam_buka,
+                        'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_status' => '2',
+                        'pasar_foto' => 'default.jpg'
                 ];
             }
 
