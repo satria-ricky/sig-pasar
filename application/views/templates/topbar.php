@@ -1,47 +1,74 @@
 
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
+<body>
+  <div class="wrapper">
+    <div class="main-header">
+      <!-- Logo Header -->
+      <div class="logo-header" data-background-color="blue">
+        
+        <a href="#" class="logo">
+          <!-- <img src="<?= base_url('assets/'); ?>img/logo.svg" alt="navbar brand" class="navbar-brand"> --> 
+          <h2 class="text-white pt-3 fw-bold">BATU BULAN</h2>
+        </a>
+        <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">
+            <i class="icon-menu"></i>
+          </span>
+        </button>
+        <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+        <div class="nav-toggle">
+          <button class="btn btn-toggle toggle-sidebar">
+            <i class="icon-menu"></i>
           </button>
+        </div>
+      </div>
+      <!-- End Logo Header -->
 
-          <!-- Topbar Search -->
-          <h3 class="ml-2 mt-2 font-weight-bold "><?= $judul;?> </h3>
+  <!-- Navbar Header -->
+      <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+        
+        <div class="container-fluid">
+          <div class="collapse" id="search-nav">
+            
+          </div>
+          <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+           
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto"> 
-
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $data_pengguna['admin_nama'];  ?></span>
-                <img class="img-profile rounded-circle" style="width: 65px;height: 65px; " src="<?= base_url('assets/foto/admin/').$data_pengguna['admin_foto']; ?>"> <i class="fas fa-cog ml-2"></i> 
+                <a class="nav-link" href="#" id="messageDropdown" role="button" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
+                <h6 class="text-white pt-2 fw-bold"><?= $data_pengguna['user_nama'];  ?></h6>
               </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?= base_url(); ?>c_profile">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="<?= base_url(); ?>c_dashboard">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Dashboard
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
+
+              
+            <li class="nav-item dropdown hidden-caret">
+              <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                <div class="avatar-sm">
+                  <img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="..." class="avatar-img rounded-circle">
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-user animated fadeIn">
+                <div class="dropdown-user-scroll scrollbar-outer">
+                  <li>
+                    <div class="user-box">
+                      <div class="avatar-lg"><img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="image profile" class="avatar-img rounded"></div>
+                      <div class="u-text">
+                        <h4><?= $data_pengguna['user_nama'];  ?></h4>
+                        <p class="text-muted"><?= $data_pengguna['user_username'];  ?></p><a href="<?= base_url(); ?><?= $data_pengguna['level_nama'];?>/profile" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"  href="<?= base_url(); ?><?= $data_pengguna['level_nama'];?>/edit_profile">Edit profile</a>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item"  onclick="logout()" style="cursor: pointer;">Logout</a>
+                  </li>
+                </div>
+              </ul>
             </li>
           </ul>
-        </nav>
-        <!-- End of Topbar -->
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>

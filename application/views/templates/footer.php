@@ -1,23 +1,48 @@
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white mt-3">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Zaenalabidin (1800330024)</span>
-          </div>
+<footer class="footer">
+        <div class="container-fluid">
+          <nav class="pull-left">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fab fa-instagram text-danger"></i>
+                  Instagram
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#">
+                  <i class="fab fa-facebook text-primary"></i>
+                  Facebook
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#">
+                  <i class="fab fa-whatsapp-square text-success"></i>
+                  Whatsapp
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright ml-auto">
+            Copyright <i class="far fa-copyright"></i> <b>Batu Bulan</b>
+          </div>        
         </div>
       </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+ 
+ <script> 
 
-  <!-- Scroll to Top Button-->
-  <!-- <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a> -->
+  function logout(){
+    $('#logoutModal').modal('show');
+    setTimeout(function() {
+        $('#logoutModal').modal('hide');
+    }, 50000);      
+  }
+  
+  
+
+
+</script>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -29,44 +54,30 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <!-- <div class="modal-body">Yakin Logout ?</div> -->
+        
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-          <a class="btn btn-primary" href="<?= base_url(); ?>c_login/logout">Logout</a>
+          <button class="btn btn-info" type="button" data-dismiss="modal">Kembali</button>
+          <a class="btn btn-danger" href="<?= base_url(); ?>auth/logout">Logout</a>
         </div>
       </div>
     </div>
   </div>
 
-<!-- 
  
-  <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
-  <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
-
-  <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-  <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
-  
-
-  <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script> -->
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-
-  <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
- <!--  <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
-  
-  <script type="text/javascript">
-    $('.custom-file-input').on('change', function () {
-      let fileName = $(this).val().split('\\').pop();
-      $(this).next('.custom-file-label').addClass("selected").html(fileName);
-    });
-
-  </script>
-
-
 </body>
-
 </html>
+
+
+
+
+<script type="text/javascript">
+  function show_password() {
+    var input = document.getElementById("input_password");
+    if (input.type === "password") {
+      input.type = "text";
+    } else {
+      input.type = "password";
+    }
+  } 
+
+</script>
