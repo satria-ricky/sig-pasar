@@ -48,11 +48,7 @@ class M_bulu_tangkis extends CI_model {
       $this->db->update('tb_bt', $data, array('bt_id' => $id));
     }
 
-    public function create_bt($v_data)
-    {
-        $this->db->insert('tb_bt', $v_data);
-        return $this->db->affected_rows();
-    }
+    
 
 
     public function hapus_bt($v_id) {
@@ -60,7 +56,11 @@ class M_bulu_tangkis extends CI_model {
       $this->db->delete('tb_bt');
     }
 
-
+    public function create_bt($v_data)
+    {
+        $this->db->insert('tb_bt', $v_data);
+        return $this->db->affected_rows();
+    }
 
 
 }

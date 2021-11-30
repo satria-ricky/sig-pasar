@@ -9,9 +9,6 @@
     <meta name="generator" content="Hugo 0.88.1">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/foto/pasar/'); ?>default.png">
     <?= $title; ?>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
-
     
 
     <!-- Bootstrap core CSS -->
@@ -27,7 +24,7 @@
 
     <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="<?= base_url('assets/dashboard/'); ?>dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<script src="<?= base_url('assets/'); ?>js/plugin/webfont/webfont.min.js"></script>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -47,8 +44,12 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="<?= base_url('assets/dashboard/'); ?>navbar.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/atlantis.min.css">
     <link href="<?= base_url('assets/dashboard/'); ?>carousel.css" rel="stylesheet">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
   </head>
   <body>
     

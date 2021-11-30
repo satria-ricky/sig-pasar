@@ -8,17 +8,17 @@ class Dashboard extends CI_Controller {
     }
 
     public function index(){
-    	$v_data['list'] = $this->M_bulu_tangkis->selectAllverifikasi();
         $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-
-        $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."/dashboard/tambah'><i class='fas fa-plus fa-sm fa-fw'></i>Tambah data ?</a>";
+        $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."dashboard/tambah'><i class='fas fa-plus fa-sm fa-fw'></i>Tambah data ?</a>";
         $this->load->view('templates/header_dashboard', $v_data);
+        $this->load->view('templates/load_template_footer');
         $this->load->view('v_dashboard/index', $v_data);
-        $this->load->view('templates/footer_dashboard', $v_data);		 
+        $this->load->view('templates/footer_dashboard', $v_data);	
+        	 
 	}
 
-	public function load_data_to_tabel(){
-		$data = $this->M_bulu_tangkis->selectAllverifikasi();
+	public function load_data(){
+		$data = $this->M_read->select_pasar();
 		echo json_encode($data);	
 	}
 
@@ -34,6 +34,9 @@ class Dashboard extends CI_Controller {
         $this->form_validation->set_rules('jam_buka','Jam_buka','required|trim', [
             'required' => 'Form tidak boleh kosong!',
         ]);
+        $this->form_validation->set_rules('jam_tutup','Jam_tutup','required|trim', [
+            'required' => 'Silahkan set lokasi pasar!',
+        ]);
         $this->form_validation->set_rules('latitude', 'Latitude', 'required|trim', [
             'required' => 'Silahkan set titik koordinat!',
         ]);
@@ -41,8 +44,9 @@ class Dashboard extends CI_Controller {
         
         if($this->form_validation->run() == false){
             $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-            $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."/dashboard'><i class='fas fa-arrow-left'></i> Kembali ?</a>";
+            $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."dashboard'><i class='fas fa-arrow-left'></i> Kembali ?</a>";
             $this->load->view('templates/header_dashboard', $v_data);
+            $this->load->view('templates/load_template_footer');
             $this->load->view('v_dashboard/tambah');
             $this->load->view('templates/footer_dashboard', $v_data);
         }else{
@@ -93,9 +97,9 @@ class Dashboard extends CI_Controller {
                 ];
             }
 
-            $this->M_bulu_tangkis->create_bt($v_data);
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil ditambah! Mohon tunggu diverifikasi admin :)</div>');
-            redirect('c_dashboard/tambah');
+            $this->M_create->tambah_pasar($v_data);
+            $this->session->set_flashdata('pesan', 'Data berhasil ditambah! Mohon tunggu diverifikasi admin :)');
+            redirect('dashboard/tambah');
 
         }
 	}

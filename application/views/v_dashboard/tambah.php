@@ -2,7 +2,6 @@
 <main>
 	<div class="container-fluid" style="margin-top: 60px;">
 
-    <?= $this->session->flashdata('pesan'); ?>
 
     <?= form_open_multipart(); ?>
     <div class="card">
@@ -21,7 +20,7 @@
                   <h6 class="mt-2 mb-0">Nama pasar</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="nama">
+                  <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>">
                   <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -30,7 +29,7 @@
                   <h6 class="mt-2 mb-0">Alamat</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="alamat">
+                  <input type="text" class="form-control" name="alamat" value="<?= set_value('alamat'); ?>">
                   <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -39,7 +38,7 @@
                   <h6 class="mt-2 mb-0">Jam buka</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="time" class="form-control" name="jam_buka">
+                  <input type="time" class="form-control" name="jam_buka" value="<?= set_value('jam_buka'); ?>">
                   <?= form_error('jam_buka', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -48,7 +47,7 @@
                   <h6 class="mt-2 mb-0">Jam tutup</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="time" class="form-control" name="jam_tutup">
+                  <input type="time" class="form-control" name="jam_tutup" value="<?= set_value('jam_tutup');?>"> 
                   <?= form_error('jam_tutup', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -67,18 +66,39 @@
                   <h4 class="mt-1 mb-0">Pilih lokasi:</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <button type="button" class="btn btn-outline-info btn-sm ml-auto mr-2" onclick="getLocation()">Gunakan lokasi terkini</button>
-                  <input type="hidden" name="Latitude" id="Latitude">
-                  <input type="hidden" name="Longitude" id="Longitude">
+                  <div class="btn-group">
+                    <div class="form-group mr-1"> 
+                      <input type="text" class="form-control" name="latitude" id="Latitude" value="<?= set_value('latitude'); ?>" readonly="" placeholder="Latitude">
+                    </div>
+                    <div class="form-group mr-1">  
+                      <input type="text" class="form-control" name="longitude" id="Longitude" value="<?= set_value('longitude'); ?>" readonly="" placeholder="Longitude">
+                    </div>
+                  </div>
+                  <?= form_error('latitude', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
-              
+<!--               
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mt-2 mb-0"></h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                
+                </div>
+              </div> -->
+
+              <div class="row mb-3">
+                <div class="col-sm-4">
+                <button type="button" class="btn btn-outline-info" onclick="getLocation()">Gunakan lokasi terkini</button>
+                </div>
+              </div>
+
               <div class="row mb-3">
                 <div id="mapid" style="width:100%;"></div>
               </div>
 
               <div class="row ml-auto">
-                <button class="btn btn-primary" id="tambah"> Tambah </button>
+                <button class="btn btn-primary" type="button" id="tambah"> Tambah </button>
                   <?= form_close(); ?>
               </div>
             </div>
@@ -86,8 +106,7 @@
         </div>
 
 </body>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
@@ -155,4 +174,43 @@ function getLocation() {
 
 
 
+$('#tambah').click(function(e) {
+    swal({
+      title: 'Tambah data ?',
+      icon: 'warning',
+      buttons:{
+        confirm: {
+          text : 'Iya',
+          className : 'btn btn-success'
+        },
+        cancel: {
+          text : 'Tidak',
+          visible: true,
+          className: 'btn btn-focus'
+        }
+      }
+    }).then((Edit) => {
+      if (Edit) {
+        $('form').submit();
+      } else {
+        swal.close();
+      }
+    });
+
+  });
+
+
+
 </script>
+<?php if($this->session->flashdata('pesan')){ ?>
+  <script>
+    swal("<?php echo $this->session->flashdata('pesan'); ?>", {
+        icon : "success",
+        buttons: {                  
+            confirm: {
+                className : 'btn btn-success'
+            }
+        },
+    });
+  </script>
+<?php } ?>
