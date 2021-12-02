@@ -15,7 +15,7 @@
                   <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item ">
-                  <a href="<?= base_url()?><?= $data_pengguna['level_nama'];?>/profile" class="text-white">Detail profile</a>
+                  <a href="<?= base_url()?>admin" class="text-white">Detail profile</a>
                 </li>
                 <li class="separator">
                   <i class="flaticon-right-arrow"></i>
@@ -47,16 +47,9 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="Admin" class="rounded-circle" width="150">
+                    <img src="<?= base_url('assets/foto/user/').$data_pengguna['admin_foto']; ?>" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <b><h1><?= $data_pengguna['user_nama'];?></h1></b>
-                      <p class="text-secondary mb-1"><?= $data_pengguna['level_nama'];?></p>
-                      <p class="text-muted font-size-sm">Terakhir diubah pada : <?php if ($data_pengguna['last_updated'] == "") { ?>
-                          -
-                      <?php }else{ ?>
-                        <?= $data_pengguna['last_updated'];?>
-                      <?php } ?>
-                        </p>
+                      <b><h1><?= $data_pengguna['admin_nama'];?></h1></b>
                     </div>
                   </div>
                 </div>
@@ -72,7 +65,7 @@
                   <h6 class="mt-2 mb-0">Nama lengkap</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="nama" value="<?= $data_pengguna['user_nama'];?>">
+                  <input type="text" class="form-control" name="nama" value="<?= $data_pengguna['admin_nama'];?>">
                   <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -81,7 +74,7 @@
                   <h6 class="mt-2 mb-0">Username</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="username" value="<?= $data_pengguna['user_username'];?>">
+                  <input type="text" class="form-control" name="username" value="<?= $data_pengguna['admin_username'];?>">
                   <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
@@ -91,7 +84,7 @@
                 </div>
                 <div class="col-sm-9 text-secondary">
                 
-                    <input type="password" id="input_password" name="password" class="form-control" value="<?= $data_pengguna['user_password'];?>">
+                    <input type="password" id="input_password" name="password" class="form-control" value="<?= $data_pengguna['admin_password'];?>">
                   <div class="ml-4">
                   <input class="form-check-input " type="checkbox" onclick="show_password()">
                   <span class="form-check-sign">Show password</span>
@@ -101,19 +94,10 @@
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Kontak</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="number" class="form-control" name="kontak" value="<?= $data_pengguna['user_kontak'];?>">
-                  <?= form_error('kontak', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
                   <h6 class="mt-2 mb-0">Alamat</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="alamat" value="<?= $data_pengguna['user_alamat'];?>">
+                  <input type="text" class="form-control" name="alamat" value="<?= $data_pengguna['admin_alamat'];?>">
                   <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>

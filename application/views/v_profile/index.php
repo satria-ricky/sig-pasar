@@ -2,9 +2,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <!-- <h3 class="ml-2 mb-3 font-weight-bold ">Profile</h3> -->
           <?= $this->session->flashdata('pesan'); ?>
 <?php $data_pengguna; ?>
 
@@ -17,7 +14,7 @@
             <div class="col-md-8 ">
 
 
-            <?= form_open_multipart('c_profile'); ?>
+            <?= form_open_multipart('admin/profile'); ?>
             
             <div class="form-group row mt-1">
               <label for="basic-url" class="col-sm-2 col-form-label mt-1" >Username</label>

@@ -21,6 +21,7 @@
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
+
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/atlantis.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>

@@ -224,7 +224,11 @@ function detail(id){
                         <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="tutup_detail"></div>
                     </div>
                     <div class="form-group"> 
-                        <label for="basic-url">Status : </label>
+                        <label for="basic-url">Deskripsi </label>
+                        <div class="form-control" id="status_detail"></div>
+                    </div>
+                    <div class="form-group"> 
+                        <label for="basic-url">Status</label>
                         <div class="form-control" id="status_detail"></div>
                     </div>
                     <input type="hidden" id="id_modal">

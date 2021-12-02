@@ -23,35 +23,30 @@
         </div>
 
 
-        <div class="page-inner mt--5">
-          <div class="row mt--2">
+<div class="page-inner mt--5">
+  <div class="row mt--2">
 
 
 
 <!-- ISI KONTEN -->
 
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-
-                      
-
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="Admin" class="rounded-circle" width="150">
+                    <img src="<?= base_url('assets/foto/user/').$data_pengguna['admin_foto']; ?>" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <b><h1><?= $data_pengguna['user_nama'];?></h1></b>
-                      <p class="text-secondary mb-1"><?= $data_pengguna['level_nama'];?></p>
-                      <p class="text-muted font-size-sm">Akun dibuat pada : <?= $data_pengguna['user_created'];?></p>
+                      <b><h1><?= $data_pengguna['admin_nama'];?></h1></b>
                     </div>
                   </div>
                 </div>
               </div>
-            
             </div>
+
             <div class="col-md-8">
               <div class="card ">
                 <div class="card-body">
@@ -60,7 +55,7 @@
                       <h6 class="mb-0">Nama lengkap</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $data_pengguna['user_nama'];?>
+                      <?= $data_pengguna['admin_nama'];?>
                     </div>
                   </div>
                   <hr>
@@ -69,7 +64,7 @@
                       <b><h6 class="mb-0">Username</h6></b>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $data_pengguna['user_username'];?>
+                      <?= $data_pengguna['admin_username'];?>
                     </div>
                   </div>
                   <hr>
@@ -78,66 +73,39 @@
                       <b><h6 class="mb-0">Password</h6></b>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $data_pengguna['user_password'];?>
+                      <?= $data_pengguna['admin_password'];?>
                     </div>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Kontak</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <?= $data_pengguna['user_kontak'];?>
-                    </div>
-                  </div>
+                
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Alamat</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $data_pengguna['user_alamat'];?>
-                    </div>
-                  </div>
-                  <hr>
-                   <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Status akun</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <?php if ($data_pengguna['user_id_status'] == '1'){ ?>
-                          <h5><span class="badge badge-success"><?= $data_pengguna['status_nama'];?></span></h5>
-                      <?php }else{ ?>
-                        <h5><span class="badge badge-danger"><?= $data_pengguna['status_nama'];?></span></h5>
-                      <?php } ?>
-
-                      
+                      <?= $data_pengguna['admin_alamat'];?>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="" href="<?= base_url()?><?= $data_pengguna['level_nama'];?>/edit_profile">Edit profile</a>
+                      <a class="btn btn-info " href="<?= base_url()?>admin/edit_profile">Edit profile</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-  
-
-
-
-                </div>
-              </div>
-            </div>
+        </div>
+      </div>
+    </div>
 
 <!-- ISI KONTEN -->
             
-              </div>
-            </div>
-          </div>
+  </div>
+</div>
+</div>
+
 
 <?php if($this->session->flashdata('pesan')){ ?>
   <script>

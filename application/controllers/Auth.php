@@ -16,46 +16,53 @@ class Auth extends CI_Controller {
         echo json_encode($data);
     }
 
-    public function login(){
+    public function index(){
 
-        $v_username = $this->input->post('username');
-        $v_password = $this->input->post('password');
+        // if ($this->session->userdata('id_username')) {
+        //     redirect('c_profile');
+        // }
+        
+        $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+            'required' => 'Form tidak boleh kosong!'
+        ]); 
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
+            'required' => 'Form tidak boleh kosong!'
+        ]);
 
-        $pengguna = $this->M_auth->auth($v_username, $v_password);
+        $v_data['title'] = 'Sign in';
 
-        if ($pengguna){
 
-            if ($pengguna['user_id_status'] == 1) {
 
-                $v_data['id_username'] = $pengguna['user_id'];
-                $v_data['id_level'] = $pengguna['user_id_level'];
+        if($this->form_validation->run() == false){
+            // $this->load->view('templates/header', $v_data);
+            // $this->load->view('templates/load_template_footer', $v_data);
+            $this->load->view('v_login/index', $v_data);
 
+        }else{
+
+            $v_username = $this->input->post('username');
+            $v_password = $this->input->post('password');
+            $v_admin = $this->M_read->auth($v_username, $v_password);
+
+            if ($v_admin){
+                $v_id_admin = $this->M_read->select_admin_by_username($v_username);
+                $v_data['id_username'] = $v_admin['admin_id'];
                 $this->session->set_userdata($v_data);
+                redirect('admin');
 
-                if ($pengguna['user_id_level'] == 1) {
-                       
-                    redirect('admin/profile');
-                }else {
-                    redirect('sales/profile');
-                }
-
-            }else{
-                $this->session->set_flashdata('nonaktif', 'Maaf, akun Anda telah dinonaktifkan !');
-                redirect('dashboard');    
+            }else {
+                $this->session->set_flashdata('error', 'Username dan password salah!');
+                redirect('auth');
             }
-        }else {
-            $this->session->set_flashdata('error', 'username dan password salah !');
-            redirect('dashboard');
-        }
 
+        }  
     }
 
 
     public function logout(){
         $this->session->unset_userdata('id_username');
-        $this->session->unset_userdata('id_level');
         $this->session->set_flashdata('logout', 'Berhasil logout !');
-        redirect('dashboard');
+        redirect('auth');
     }
 
     public function blocked(){

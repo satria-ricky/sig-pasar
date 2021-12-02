@@ -35,30 +35,30 @@
            
 
                 <a class="nav-link" href="#" id="messageDropdown" role="button" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false">
-                <h6 class="text-white pt-2 fw-bold"><?= $data_pengguna['user_nama'];  ?></h6>
+                <h6 class="text-white pt-2 fw-bold"><?= $data_pengguna['admin_nama'];  ?></h6>
               </a>
 
               
             <li class="nav-item dropdown hidden-caret">
               <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                 <div class="avatar-sm">
-                  <img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="..." class="avatar-img rounded-circle">
+                  <img src="<?= base_url('assets/foto/user/').$data_pengguna['admin_foto']; ?>" alt="..." class="avatar-img rounded-circle">
                 </div>
               </a>
               <ul class="dropdown-menu dropdown-user animated fadeIn">
                 <div class="dropdown-user-scroll scrollbar-outer">
                   <li>
                     <div class="user-box">
-                      <div class="avatar-lg"><img src="<?= base_url('assets/foto/user/').$data_pengguna['user_foto']; ?>" alt="image profile" class="avatar-img rounded"></div>
+                      <div class="avatar-lg"><img src="<?= base_url('assets/foto/user/').$data_pengguna['admin_foto']; ?>" alt="image profile" class="avatar-img rounded"></div>
                       <div class="u-text">
-                        <h4><?= $data_pengguna['user_nama'];  ?></h4>
-                        <p class="text-muted"><?= $data_pengguna['user_username'];  ?></p><a href="<?= base_url(); ?><?= $data_pengguna['level_nama'];?>/profile" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <h4><?= $data_pengguna['admin_nama'];  ?></h4>
+                        <p class="text-muted"><?= $data_pengguna['admin_username'];  ?></p><a href="<?= base_url(); ?>admin" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item"  href="<?= base_url(); ?><?= $data_pengguna['level_nama'];?>/edit_profile">Edit profile</a>
+                    <a class="dropdown-item"  href="<?= base_url(); ?>edit_profile">Edit profile</a>
                   </li>
                   <li>
                     <div class="dropdown-divider"></div>
