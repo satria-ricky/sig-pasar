@@ -204,15 +204,13 @@ function detail(id){
                         
         <div class="modal-body">
           
-                        <div style="text-align: center;">
-                          <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
-                          </div>
-
+                    <div style="text-align: center;">
+                      <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
+                    </div>
                     <div class="form-group"> 
                         <label for="basic-url">Nama : </label>
                         <div class="form-control" id="nama_detail"></div>
                     </div>
-                    
                     <div class="form-group">
                       <label for="basic-url ">Alamat</label>
                         <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="alamat_detail"></div>

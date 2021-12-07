@@ -2,9 +2,9 @@
 <main>
 	<div class="container-fluid" style="margin-top: 60px;">
 
-
-    <?= form_open_multipart(); ?>
-    <div class="card">
+<div class="card">
+    
+    
             <div class="card-header">
             
                 <h4>Tambah data pasar</h4>      
@@ -14,10 +14,10 @@
               <div class="card-body">
             
               
-              
+              <?= form_open_multipart(); ?>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Nama pasar</h6>
+                  <h6 class="mt-2 mb-0">Nama pasar*</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>">
@@ -26,7 +26,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Alamat</h6>
+                  <h6 class="mt-2 mb-0">Alamat*</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="text" class="form-control" name="alamat" value="<?= set_value('alamat'); ?>">
@@ -35,7 +35,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Jam buka</h6>
+                  <h6 class="mt-2 mb-0">Jam buka*</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="time" class="form-control" name="jam_buka" value="<?= set_value('jam_buka'); ?>">
@@ -44,7 +44,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Jam tutup</h6>
+                  <h6 class="mt-2 mb-0">Jam tutup*</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input type="time" class="form-control" name="jam_tutup" value="<?= set_value('jam_tutup');?>"> 
@@ -70,7 +70,7 @@
 
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h4 class="mt-1 mb-0">Pilih lokasi:</h4>
+                  <h4 class="mt-1 mb-0">Pilih lokasi*</h4>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <div class="btn-group">
@@ -84,15 +84,6 @@
                   <?= form_error('latitude', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
-<!--               
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0"></h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                
-                </div>
-              </div> -->
 
               <div class="row mb-3">
                 <div class="col-sm-4">
@@ -106,8 +97,9 @@
 
               <div class="row ml-auto">
                 <button class="btn btn-primary" type="button" id="tambah"> Tambah </button>
-                  <?= form_close(); ?>
+                  
               </div>
+              <?= form_close(); ?>
             </div>
           </div>
         </div>
