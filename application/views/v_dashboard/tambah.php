@@ -51,7 +51,14 @@
                   <?= form_error('jam_tutup', '<small class="text-danger">', '</small>'); ?>
                 </div>
               </div>
-
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mt-2 mb-0">Deskripsi</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <textarea class="form-control" name="deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
+                </div>
+              </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mt-1 mb-0">Foto pasar</h6>

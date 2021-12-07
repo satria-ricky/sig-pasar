@@ -176,7 +176,9 @@ function detail(id){
           }
 
           $('#status_detail').html(status_content);
-          
+
+          $('#deskripsi_detail').html(data.pasar_deskripsi);
+
           document.getElementById('id_modal').value = data.pasar_id;
         }
 
@@ -225,7 +227,7 @@ function detail(id){
                     </div>
                     <div class="form-group"> 
                         <label for="basic-url">Deskripsi </label>
-                        <div class="form-control" id="status_detail"></div>
+                        <div class="form-control" id="deskripsi_detail"></div>
                     </div>
                     <div class="form-group"> 
                         <label for="basic-url">Status</label>

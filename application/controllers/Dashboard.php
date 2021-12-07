@@ -56,8 +56,13 @@ class Dashboard extends CI_Controller {
             $v_latitude = $this->input->post('latitude');
             $v_jam_buka = $this->input->post('jam_buka');
             $v_jam_tutup = $this->input->post('jam_tutup');
-            $upload_foto = $_FILES['foto']['name'];
 
+            $upload_foto = $_FILES['foto']['name'];
+            if ($this->input->post('deskripsi') == "" || $this->input->post('deskripsi') == NULL) {
+                $v_deskripsi = "-";
+            }else {
+                $v_deskripsi = $this->input->post('deskripsi');
+            }
             if($upload_foto){
                 
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -75,6 +80,7 @@ class Dashboard extends CI_Controller {
                         'latitude' => $v_latitude,
                         'pasar_jam_buka' => $v_jam_buka,
                         'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_deskripsi' => $v_deskripsi,
                         'pasar_status' => '2',
                         'pasar_foto' => $v_nama_foto
                     ];
@@ -92,6 +98,7 @@ class Dashboard extends CI_Controller {
                         'latitude' => $v_latitude,
                         'pasar_jam_buka' => $v_jam_buka,
                         'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_deskripsi' => $v_deskripsi,
                         'pasar_status' => '2',
                         'pasar_foto' => 'default.jpg'
                 ];
