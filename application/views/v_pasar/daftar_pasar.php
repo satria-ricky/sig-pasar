@@ -30,7 +30,12 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Basic</h4>
+                  <div class="btn-group ">
+                    <select class="custom-select ml-2 mr-2" id="status_filter" name="status" >
+                          <option value="">--Pilih status--</option>
+                    </select>
+                    <button type="button" id="filter" class="btn btn-primary btn-sm ml-2 mr-2">Filter</button> 
+                  </div>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -64,7 +69,7 @@
         
         <div class="modal-header">
            <h5 class="modal-title" id="exampleModalLabel">      
-              Detail data sales
+              Detail data pasar
            </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -76,12 +81,10 @@
                     <div style="text-align: center;">
                       <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
                     </div>
-
                     <div class="form-group"> 
                         <label for="basic-url">Nama : </label>
                         <div class="form-control" id="nama_detail"></div>
                     </div>
-                    
                     <div class="form-group">
                       <label for="basic-url ">Alamat</label>
                         <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="alamat_detail"></div>
@@ -96,7 +99,7 @@
                     </div>
                     <div class="form-group"> 
                         <label for="basic-url">Deskripsi </label>
-                        <div class="form-control" id="status_detail"></div>
+                        <div class="form-control" id="deskripsi_detail"></div>
                     </div>
                     <div class="form-group"> 
                         <label for="basic-url">Status</label>
@@ -115,11 +118,11 @@
 
  
 <script type="text/javascript">
-  getdatasales();
-  function getdatasales(id_status){
+  get_pasar();
+  function get_pasar(id_status){
 
     $.ajax({
-            url: "<?php echo base_url(); ?>admin/get_sales",
+            url: "<?php echo base_url(); ?>admin/load_data_pasar",
             type: "post",
             data: {
                 id_status : id_status
@@ -131,43 +134,37 @@
                     "data": data,
                     "columns": [
                         {
-                            "data": "user_nama"
+                            "data": "pasar_nama"
                         },
                         {
-                            "data": "user_username"
+                            "data": "pasar_alamat"
                         },
                         {
-                            "data": "user_password"
+                            "data": "pasar_jam_buka"
                         },
                         {
-                            "data": "user_kontak"
-                        },
-                        {
-                            "data": "user_alamat"
-                        },
-                        {
-                            "data": "user_id_status",
+                            "data": "pasar_status",
                             "render": function(data, type, row, meta) {
-                              if(row.user_id_status == '1'){
-                                return `<h6 class="text-center"><span class="badge badge-success">${row.status_nama}</span></h6>`;
+                              if(row.pasar_status == '1'){
+                                return `<h6 class="text-center"><span class="badge badge-success">${row.stts_nama}</span></h6>`;
                                 }
                               else{
-                                return `<h6 class="text-center"><span class="badge badge-danger">${row.status_nama}</span></h6>`;
+                                return `<h6 class="text-center"><span class="badge badge-danger">${row.stts_nama}</span></h6>`;
                               }
                             }
                         },
                         {
-                            "data": "user_id",
+                            "data": "pasar_id",
                             "render": function(data, type, row, meta) {
                             return `
-                              <button class="btn btn-primary btn-xs btn-round" onclick="detail(${row.user_id})">Detail</button>
-                              <button class="btn btn-success btn-xs btn-round m-0" onclick="edit(${row.user_id})">Edit</button>
-                              <button class="btn btn-danger btn-xs btn-round" onclick="hapus(${row.user_id})"> Hapus </button> 
+                              <button class="btn btn-primary btn-xs btn-round" onclick="detail(${row.pasar_id})">Detail</button>
+                              <button class="btn btn-success btn-xs btn-round m-0" onclick="edit(${row.pasar_id})">Edit</button>
+                              <button class="btn btn-danger btn-xs btn-round" onclick="hapus(${row.pasar_id})"> Hapus </button> 
                             `;
                             }
                         }
                       ]
-                } );
+                  } );
             }
         });
 
@@ -177,14 +174,11 @@
 
   function detail(id){
     $('#modal_detail').modal('show');
-    setTimeout(function() {
-        $('#modal_detail').modal('hide');
-    }, 50000);
     
     // console.log(id);
     $.ajax({
         method: 'get',
-        url: "<?php echo base_url(); ?>auth/detail_user",
+        url: "<?php echo base_url(); ?>auth/detail_pasar",
         data: {
             id: id
         },
@@ -192,28 +186,25 @@
         success: function(data) {
 
           // console.log(data);
-          var url_foto = "<?= base_url(); ?>assets/foto/user/"+data.user_foto;
+          var url_foto = "<?= base_url(); ?>assets/foto/pasar/"+data.pasar_foto;
       
           $('#foto_detail').attr("src",url_foto);
+          $('#nama_detail').html(data.pasar_nama);
+          $('#alamat_detail').html(data.pasar_alamat);
+          $('#buka_detail').html(data.pasar_jam_buka);
+          $('#tutup_detail').html(data.pasar_jam_tutup);
 
-          $('#nama_detail').html(data.user_nama);
-          $('#username_detail').html(data.user_username);
-          $('#password_detail').html(data.user_password);
-          $('#kontak_detail').html(data.user_kontak);
-          $('#alamat_detail').html(data.user_alamat);
-        
-          $('#created_detail').html(data.user_created);
-
-          if (data.user_id_status == "1") {
-            var status_content = '<h5><span class="badge badge-success"> '+data.status_nama+' </span></h5>';
+          if (data.pasar_status == "1") {
+            var status_content = '<h5><span class="badge badge-success"> '+data.stts_nama+' </span></h5>';
           }else{
-            var status_content = '<h5><span class="badge badge-danger"> '+data.status_nama+'</span></h5>';
+            var status_content = '<h5><span class="badge badge-danger"> '+data.stts_nama+'</span></h5>';
           }
 
           $('#status_detail').html(status_content);
-           document.getElementById('id_modal').value = data.user_id
-           
-         
+
+          $('#deskripsi_detail').html(data.pasar_deskripsi);
+
+          document.getElementById('id_modal').value = data.pasar_id;
         }
 
     });   
@@ -222,50 +213,50 @@
 
   function hapus(id) {
     swal({
-            title: 'Yakin dihapus?',
-            text: 'Data riwayat transaksi sales akan terhapus dan tidak dapat dipulihkan!',
-            icon : "warning",
-            buttons:{
-              confirm: {
-                text : 'Hapus',
-                className : 'btn btn-danger'
-              },
-              cancel: {
-                text : 'Tidak',
-                visible: true,
-                className: 'btn btn-focus'
-              }
+      title: 'Yakin dihapus?',
+      text: 'Data terhapus dan tidak dapat dipulihkan!',
+      icon : "warning",
+      buttons:{
+        confirm: {
+          text : 'Hapus',
+          className : 'btn btn-danger'
+        },
+        cancel: {
+          text : 'Tidak',
+          visible: true,
+          className: 'btn btn-focus'
+        }
+      }
+    }).then((Delete) => {
+      if (Delete) {
+        swal({
+          title: 'Berhasil!',
+          text: 'Data berhasil dihapus!',
+          icon : "success",
+          buttons : {
+            confirm: {
+              className : 'btn btn-success'
             }
-          }).then((Delete) => {
-            if (Delete) {
-              swal({
-                title: 'Berhasil!',
-                text: 'Data berhasil dihapus!',
-                icon : "success",
-                buttons : {
-                  confirm: {
-                    className : 'btn btn-success'
-                  }
-                }
-              }).then((Hapus) => {
-                if (Hapus) {
-                  $.ajax({
-                    method: 'post',
-                    url: "<?php echo base_url(); ?>auth/hapus_user",
-                    data: {
-                        id: id
-                    },
-                    dataType: "json",
-                    success: function(data) {
+          }
+        }).then((Hapus) => {
+          if (Hapus) {
+            $.ajax({
+              method: 'post',
+              url: "<?php echo base_url(); ?>admin/hapus_pasar",
+              data: {
+                  id: id
+              },
+              dataType: "json",
+              success: function(data) {
 
-                      location.reload();
-                             
-                    }
-                  });
-                }
-              });
-            };
-          });
+                
+                       
+              }
+            });
+          }
+        });
+      };
+    });
   }
 
 
@@ -273,14 +264,6 @@
     document.location.href = "<?php echo base_url('admin/editpas_sales/')?>"+id;
   }
 
-
-  function cek_riwayat(){
-
-   var id = document.getElementById('id_modal').value;
-  
-   document.location.href = "<?php echo base_url('admin/detpas_sales/')?>"+id;
-   
-};
 
 </script>
 

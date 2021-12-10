@@ -9,6 +9,8 @@ class Admin extends CI_Controller {
     }
 
 
+    
+
 
     
 
@@ -128,16 +130,34 @@ class Admin extends CI_Controller {
 
 
 //DATA PASAR
-    public function get_pasar() {
-
+    
+    public function load_data_pasar(){
         $v_status = $this->input->post('id_status');
        if( strlen($v_status) != 0 ){
-            $data = $this->M_user->select_by_status($v_status);  
+            $data = $this->M_read->select_pasar_by_status($v_status);  
         }else{  
-            $data = $this->M_user->select_all_sales();
+            $data = $this->M_read->select_semua_pasar();
         }
             echo json_encode($data);
+    }
 
+
+
+
+    public function hapus_pasar (){
+
+        $id = $this->input->post('id');
+
+        $hapus_foto = $this->M_read->select_pasar_by_id($id);
+        
+        if($hapus_foto['pasar_foto'] != 'default.png'){
+            unlink(FCPATH . 'assets/foto/pasar/' . $hapus_foto['pasar_foto']);
+        }
+
+        
+        $data = $this->M_delete->hapus_pasar($id);
+        
+        echo json_encode($data);
     }
 
 

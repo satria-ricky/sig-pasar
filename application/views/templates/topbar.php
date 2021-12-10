@@ -8,7 +8,7 @@
         
         <a href="#" class="logo">
           <!-- <img src="<?= base_url('assets/'); ?>img/logo.svg" alt="navbar brand" class="navbar-brand"> --> 
-          <h2 class="text-white pt-3 fw-bold">BATU BULAN</h2>
+          <h2 class="text-white pt-3 fw-bold">SIG | PASAR </h2>
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon">

@@ -23,7 +23,7 @@
             </ul>
           </nav>
           <div class="copyright ml-auto">
-            Copyright <i class="far fa-copyright"></i> <b>Batu Bulan</b>
+            Copyright <i class="far fa-copyright"></i> <b>Subhan</b>
           </div>        
         </div>
       </footer>

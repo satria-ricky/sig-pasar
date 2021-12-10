@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller {
 
     public function index(){
         $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-        $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."dashboard/tambah'><i class='fas fa-plus fa-sm fa-fw'></i>Tambah data ?</a>";
+        $v_data['opsi'] = "<a class='btn btn-outline-info mr-3' href='".base_url()."dashboard/tambah'>Tambah data</a>";
         $this->load->view('templates/header_dashboard', $v_data);
         $this->load->view('templates/load_template_footer');
         $this->load->view('v_dashboard/index', $v_data);
@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
         
         if($this->form_validation->run() == false){
             $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-            $v_data['opsi'] = "<a class='dropdown-item text-capitalize' href='".base_url()."dashboard'><i class='fas fa-arrow-left'></i> Kembali ?</a>";
+            $v_data['opsi'] = "<a class='btn btn-outline-info mr-3' href='".base_url()."dashboard'> Kembali </a>";
             $this->load->view('templates/header_dashboard', $v_data);
             $this->load->view('templates/load_template_footer');
             $this->load->view('v_dashboard/tambah');

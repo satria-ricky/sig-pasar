@@ -60,28 +60,15 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto" >
-           
-            <li class="nav-item dropdown no-arrow ">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                 <!-- <i class="fas fa-cog ml-2"></i>  -->
-                 Aksi
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <?= $opsi; ?>
-                
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-capitalize" href="<?= base_url(); ?>auth">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw"></i> Login
-                </a>
-              </div>
-            </li>
-
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            
+          </ul>
+          <div class="d-flex">
+            <?= $opsi; ?>
+            <a class="btn btn-outline-success" href="<?= base_url(); ?>auth">Login</a>
           </div>
         </div>
-      </div>
+    </div>
     </nav>
 </header>
