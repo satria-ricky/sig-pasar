@@ -31,10 +31,10 @@
               <div class="card">
                 <div class="card-header">
                   <div class="btn-group ">
-                    <select class="custom-select ml-2 mr-2" id="status_filter" name="status" >
+                    <select class="custom-select ml-2 mr-2" id="status_filter" name="status_filter" >
                           <option value="">--Pilih status--</option>
                     </select>
-                    <button type="button" id="filter" class="btn btn-primary btn-sm ml-2 mr-2">Filter</button> 
+                    <button type="button" id="button_filter" class="btn btn-primary btn-sm ml-2 mr-2">Filter</button> 
                   </div>
                 </div>
                 <div class="card-body">
@@ -137,7 +137,47 @@
 
  
 <script type="text/javascript">
+  function get_status() {
+        $.ajax({
+            url: "<?php echo base_url(); ?>admin/load_status",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                // console.log(data)
+                var statusBody = "";
+                for(var key in data){
+                  statusBody +=`<option value="${data[key]['stts_id']}">${data[key]['stts_nama']}</option>`;
+                }
+                $("#status_filter").append(statusBody);
+            }
+        });
+    }
+    get_status();
+
+    $(document).on("click", "#button_filter", function(e) {
+        e.preventDefault();
+
+        
+        var id_status = $("#status_filter").val();
+         
+
+        if(id_status.length != 0){
+          // console.log("ini id_status ="+id_status);
+          $('#basic-datatables').DataTable().destroy();
+          get_pasar(id_status);
+        }
+        else{
+          $('#basic-datatables').DataTable().destroy();
+          get_pasar();
+          // console.log("gk ada");
+        }
+
+    });
+
+
+
   get_pasar();
+
   function get_pasar(id_status){
 
     $.ajax({
@@ -189,12 +229,12 @@
 
 
 //PETA PASAR
-                  var datasearch = [];
-                  for(var i =0;i < data.length; i++){
-                    if (data[i].latitude != null || data[i].longitude != null) {
-                      datasearch.push({"titik_koordinat":[data[i].latitude,data[i].longitude], "nama":data[i].pasar_nama});
-                    }
-                  }
+        var datasearch = [];
+        for(var i =0;i < data.length; i++){
+          if (data[i].latitude != null || data[i].longitude != null) {
+            datasearch.push({"titik_koordinat":[data[i].latitude,data[i].longitude], "nama":data[i].pasar_nama});
+          }
+        }
 
 
         navigator.geolocation.getCurrentPosition(function(location) {
@@ -358,11 +398,14 @@ function hapus(id) {
 
 
   function edit(id){ 
-    document.location.href = "<?php echo base_url('admin/editpas_sales/')?>"+id;
+    document.location.href = "<?php echo base_url('admin/edit_pasar/')?>"+id;
   }
 
 
 </script>
+
+
+
 
 <?php if($this->session->flashdata('pesan')){ ?>
   <script>

@@ -58,7 +58,7 @@
                   </li>
                   <li>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item"  href="<?= base_url(); ?>edit_profile">Edit profile</a>
+                    <a class="dropdown-item"  href="<?= base_url(); ?>admin/edit_profile">Edit profile</a>
                   </li>
                   <li>
                     <div class="dropdown-divider"></div>

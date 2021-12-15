@@ -37,18 +37,7 @@
 
           <ul class="nav nav-primary">
 
-
-           <!--  <li class="nav-item">
-              <a href="<?= base_url(); ?>admin/beranda" class="collapsed">
-                <i class="fas fa-tachometer-alt"></i>
-                <p>Beranda</p>
-              </a>
-            </li>
-
-            <hr class="sidebar-divider">
- -->
-
-            <li class="nav-item">
+            <li class="nav-item <?= ($title === 'Daftar pasar' || $title === 'Edit pasar' ) ? 'active' : '' ?>">
               <a href="<?= base_url(); ?>admin/daftar_pasar" class="collapsed">
                 <i class="fas fa-store"></i>
                 <p>Data Pasar</p>
@@ -59,7 +48,7 @@
 
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
+            <li class="nav-item <?= ($title === 'Tambah Data') ? 'active' : '' ?>">
               <a href="<?= base_url(); ?>admin/tambah_data" class="collapsed">
                 <i class="fas fa-plus"></i>
                 <p>Tambah data pasar</p>
@@ -67,6 +56,7 @@
             </li>
 
             <hr class="sidebar-divider">
+            
 
               <li class="nav-item">
                 <a onclick="logout()" class="btn btn-danger" style="cursor: pointer;">
@@ -74,7 +64,7 @@
                   <p class="text-white">Logout</p>
                 </a>
               </li>
-            <hr class="sidebar-divider">
+            
 
 
           </ul>
