@@ -100,7 +100,7 @@ class Dashboard extends CI_Controller {
                         'pasar_jam_tutup' => $v_jam_tutup,
                         'pasar_deskripsi' => $v_deskripsi,
                         'pasar_status' => '2',
-                        'pasar_foto' => 'default.jpg'
+                        'pasar_foto' => 'default.png'
                 ];
             }
 

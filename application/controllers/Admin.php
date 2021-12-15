@@ -9,13 +9,6 @@ class Admin extends CI_Controller {
     }
 
 
-    
-
-
-    
-
-
-
 //PROFILE
     public function index (){
         $v_data['title'] = 'Profile';
@@ -155,7 +148,7 @@ class Admin extends CI_Controller {
         }
 
         
-        $data = $this->M_delete->hapus_pasar($id);
+        $data = $this->M_delete->delete_pasar($id);
         
         echo json_encode($data);
     }
@@ -186,31 +179,21 @@ class Admin extends CI_Controller {
         $v_id_username = $this->session->userdata('id_username');
         $v_data['data_pengguna'] = $this->M_read->get_by_id($v_id_username);
 
-        
-        
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
-            'required' => 'Silahkan masukkan Nama sales!',
+            'required' => 'Form tidak boleh kosong!',
         ]);
-
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[tb_user.user_username]', [
-            'required' => 'Silahkan masukkan Username sales!',
-            'is_unique' => 'Username telah terdaftar!'
-        ]); 
-       
-
-        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
-            'required' => 'Silahkan masukkan Password sales!',
-        ]);
-
-        $this->form_validation->set_rules('kontak', 'Kontak', 'required|trim', [
-            'required' => 'Silahkan masukkan Kontak sales!',
-        ]);
-
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
-            'required' => 'Silahkan masukkan Alamat sales!',
+            'required' => 'Form tidak boleh kosong!',
         ]);
-
-        $this->form_validation->set_rules('status','Status','required|callback_validasi_status');
+        $this->form_validation->set_rules('jam_buka','Jam_buka','required|trim', [
+            'required' => 'Form tidak boleh kosong!',
+        ]);
+        $this->form_validation->set_rules('jam_tutup','Jam_tutup','required|trim', [
+            'required' => 'Silahkan set lokasi pasar!',
+        ]);
+        $this->form_validation->set_rules('latitude', 'Latitude', 'required|trim', [
+            'required' => 'Silahkan set titik koordinat!',
+        ]);
 
 
         if($this->form_validation->run() == false){
@@ -223,34 +206,38 @@ class Admin extends CI_Controller {
         }
         else{
             $v_nama     = $this->input->post('nama');
-            $v_username = $this->input->post('username');
-            $v_password = $this->input->post('password');
-            $v_kontak = $this->input->post('kontak');
             $v_alamat = $this->input->post('alamat');
-            $v_status = $this->input->post('status');
-            
-            $upload_foto = $_FILES['foto']['name'];
+            $v_longitude = $this->input->post('longitude');
+            $v_latitude = $this->input->post('latitude');
+            $v_jam_buka = $this->input->post('jam_buka');
+            $v_jam_tutup = $this->input->post('jam_tutup');
 
+            $upload_foto = $_FILES['foto']['name'];
+            if ($this->input->post('deskripsi') == "" || $this->input->post('deskripsi') == NULL) {
+                $v_deskripsi = "-";
+            }else {
+                $v_deskripsi = $this->input->post('deskripsi');
+            }
             if($upload_foto){
                 
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']     = '15000';
-                $config['upload_path'] = './assets/foto/user/';
+                $config['upload_path'] = './assets/foto/pasar/';
                     
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('foto')){
                     $v_nama_foto = $this->upload->data('file_name');             
                     $v_data = [
-                        'user_id_level' => 2,
-                        'user_id_status' => $v_status,
-                        'user_nama' => $v_nama,
-                        'user_username' => $v_username,
-                        'user_password' => $v_password,
-                        'user_kontak' => $v_kontak,
-                        'user_alamat' => $v_alamat,
-                        'user_foto' => $v_nama_foto,
-                        'user_created' => date('Y-m-d')
+                        'pasar_nama' => $v_nama,
+                        'pasar_alamat' => $v_alamat,
+                        'longitude' => $v_longitude,
+                        'latitude' => $v_latitude,
+                        'pasar_jam_buka' => $v_jam_buka,
+                        'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_deskripsi' => $v_deskripsi,
+                        'pasar_status' => '1',
+                        'pasar_foto' => $v_nama_foto
                     ];
                 }
                 else
@@ -260,21 +247,21 @@ class Admin extends CI_Controller {
 
             }else{
                 $v_data = [
-                    'user_id_level' => 2,
-                    'user_id_status' => $v_status,
-                    'user_nama' => $v_nama,
-                    'user_username' => $v_username,
-                    'user_password' => $v_password,
-                    'user_kontak' => $v_kontak,
-                    'user_alamat' => $v_alamat,
-                    'user_foto' => 'default.jpg',
-                    'user_created' => date('Y-m-d')
+                    'pasar_nama' => $v_nama,
+                        'pasar_alamat' => $v_alamat,
+                        'longitude' => $v_longitude,
+                        'latitude' => $v_latitude,
+                        'pasar_jam_buka' => $v_jam_buka,
+                        'pasar_jam_tutup' => $v_jam_tutup,
+                        'pasar_deskripsi' => $v_deskripsi,
+                        'pasar_status' => '1',
+                        'pasar_foto' => 'default.png'
                 ];
             }
 
-            $this->M_user->create_sales($v_data);
-            $this->session->set_flashdata('pesan', 'Data berhasil ditambah!');
-            redirect('admin/daftar_sales');
+            $this->M_create->tambah_pasar($v_data);
+            $this->session->set_flashdata('pesan', 'Data pasar berhasil ditambah! :)');
+            redirect('admin/tambah_data');
 
         }
     }

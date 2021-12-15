@@ -36,7 +36,7 @@
               <div class="card">
 
                 <div class="card-body"> 
-                    <?= form_open_multipart('admin/tambah_sales'); ?>
+                    <?= form_open_multipart('admin/tambah_data'); ?>
                       <div class="form-group">
                         <label for="email2">Nama pasar*</label>
                         <input type="text" class="form-control" name="nama" placeholder="Enter nama pasar" value="<?= set_value('nama'); ?>">
@@ -62,7 +62,7 @@
 
                       <div class="form-group">
                         <label for="comment">Deskripsi</label>
-                         <input type="text" class="form-control" placeholder="Deskripsi" name="deskripsi" value="<?= set_value('deskripsi'); ?>">
+                         <textarea class="form-control" name="deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
                       </div>
 
                       <div class="form-group">
@@ -99,11 +99,11 @@
 
                       <div class="form-group">
                         <div class="row">
-			                <div id="mapid" style="width:100%;"></div>
-		              	</div>
+    			                <div id="mapid" style="width:100%;"></div>
+    		              	</div>
                       </div>
 
-                      <button type="button" class="btn btn-primary float-right mr-2" id="button_tambah">
+                      <button type="button" class="btn btn-primary float-right mr-2" id="tambah">
                         <span class="btn-label">
                           <i class="fa fa-plus"></i>
                         </span>

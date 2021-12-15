@@ -41,7 +41,7 @@
                   <div class="table-responsive">
                     <table id="basic-datatables" class="display table table-striped table-hover" >
                       <thead>
-                        <tr>
+                        <tr class="text-center">
                           <th>Nama</th>
                           <th>Alamat</th>
                           <th>Jam buka</th>
@@ -54,6 +54,25 @@
                 </div>
               </div>
             </div>
+
+
+
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="btn-group ">
+                    <h4> PETA PASAR </h4> 
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <div id="mapid" style="width:100%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
 
 
             
@@ -130,6 +149,7 @@
             dataType: "json",
             success: function(data) {
                 // console.log(data);
+
                  $('#basic-datatables').DataTable( {
                     "data": data,
                     "columns": [
@@ -165,6 +185,80 @@
                         }
                       ]
                   } );
+
+
+
+//PETA PASAR
+                  var datasearch = [];
+                  for(var i =0;i < data.length; i++){
+                    if (data[i].latitude != null || data[i].longitude != null) {
+                      datasearch.push({"titik_koordinat":[data[i].latitude,data[i].longitude], "nama":data[i].pasar_nama});
+                    }
+                  }
+
+
+        navigator.geolocation.getCurrentPosition(function(location) {
+          var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+
+        
+          console.log(location.coords.latitude, location.coords.longitude);
+
+          document.getElementById('mapid').innerHTML = "<div id='data_peta' style='height: 450px;'></div>";
+          
+
+          var mymap = new L.Map('data_peta', {zoom: 14, center: new L.latLng([-8.58280355011038, 116.13464826731037]) });
+
+          mymap.addLayer (new L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+              '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+          }));
+
+
+          var markersLayer = new L.LayerGroup();  
+          mymap.addLayer(markersLayer);
+
+          mymap.addControl( new L.Control.Search({
+            position:'topleft', 
+            layer: markersLayer,
+            initial: false,
+            collapsed: true,
+            zoom: 17
+          }) );
+
+
+          var mylocation = L.marker(latlng).addTo(mymap).bindPopup('Youre location!');
+
+
+          for(var i =0;i < data.length; i++){
+            if (data[i].latitude != null || data[i].longitude != null) {
+              
+              var icon_map = L.icon({
+                  iconUrl: '<?= base_url('assets/foto/pasar/')?>'+data[i].stts_mapicon,
+                  iconSize:     [40, 40], // size of the icon
+              });
+
+              
+              var nama_pasar = data[i].pasar_nama;
+              var titik_koordinat = [data[i].latitude, data[i].longitude];
+              
+              marker = new L.Marker(new L.latLng(titik_koordinat), {title: nama_pasar, icon:icon_map});
+
+              marker.bindPopup("<b>"+data[i].pasar_nama+"</b><br>"+data[i].pasar_alamat+"<br> <div class='row ml-1'><h6><button class='btn btn-sm btn-outline-info' onclick='detail("+data[i].pasar_id+")'>Detail</button></h6><h6><a href='https://www.google.com/maps/dir/?api=1&origin="+location.coords.latitude+","+location.coords.longitude+"&destination="+data[i].latitude+","+data[i].longitude+"' class='btn btn-sm btn-outline-success' target='_blank'>Rute</a></h6></div>");
+              
+              markersLayer.addLayer(marker);
+
+            }
+          }
+
+        });
+
+
+
+
+
             }
         });
 
@@ -199,7 +293,7 @@
           }else{
             var status_content = '<h5><span class="badge badge-danger"> '+data.stts_nama+'</span></h5>';
           }
-
+          
           $('#status_detail').html(status_content);
 
           $('#deskripsi_detail').html(data.pasar_deskripsi);
@@ -211,10 +305,12 @@
   }
 
 
-  function hapus(id) {
+
+
+function hapus(id) {
     swal({
       title: 'Yakin dihapus?',
-      text: 'Data terhapus dan tidak dapat dipulihkan!',
+      text: 'Data yang dihapus tidak dapat dipulihkan!',
       icon : "warning",
       buttons:{
         confirm: {
@@ -249,7 +345,7 @@
               dataType: "json",
               success: function(data) {
 
-                
+                location.reload();
                        
               }
             });
@@ -258,6 +354,7 @@
       };
     });
   }
+
 
 
   function edit(id){ 

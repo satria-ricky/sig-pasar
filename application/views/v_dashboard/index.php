@@ -139,6 +139,9 @@ function getData_peta(){
           }
 
         });
+
+
+        
     }
   });
 }
