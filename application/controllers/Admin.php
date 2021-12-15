@@ -223,6 +223,7 @@ class Admin extends CI_Controller {
             }else {
                 $v_deskripsi = $this->input->post('deskripsi');
             }
+            
             if($upload_foto){
                 
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
