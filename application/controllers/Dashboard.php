@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller {
         $v_data['opsi'] = "<a class='btn btn-outline-info mr-3' href='".base_url()."dashboard/tambah'>Tambah data</a>";
         $this->load->view('templates/header_dashboard', $v_data);
         $this->load->view('templates/load_template_footer');
-        $this->load->view('v_dashboard/index', $v_data);
+        $this->load->view('v_dashboard/indexv4', $v_data);
         $this->load->view('templates/footer_dashboard', $v_data);	
         	 
 	}
@@ -111,9 +111,5 @@ class Dashboard extends CI_Controller {
         }
 	}
 	
-
-
-
-
 
 }
