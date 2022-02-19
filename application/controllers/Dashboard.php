@@ -8,12 +8,14 @@ class Dashboard extends CI_Controller {
     }
 
     public function index(){
+        $v_data['template'] = '
+        <link href="'.base_url().'assets/dashboard5/navbar-top-fixed.css" rel="stylesheet">
+        <link href="'.base_url().'assets/dashboard5/carousel.css" rel="stylesheet">';
+        $v_data['is_aktif'] = 'home';
         $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-        $v_data['opsi'] = "<a class='btn btn-outline-info mr-3' href='".base_url()."dashboard/tambah'>Tambah data</a>";
-        $this->load->view('templates/header_dashboard', $v_data);
-        $this->load->view('templates/load_template_footer');
-        $this->load->view('v_dashboard/indexv4', $v_data);
-        $this->load->view('templates/footer_dashboard', $v_data);	
+        $this->load->view('templates/header_dashboardv5', $v_data);
+        $this->load->view('v_dashboard/indexv5', $v_data);
+        $this->load->view('templates/footer_dashboardv5', $v_data);	
         	 
 	}
 
@@ -24,7 +26,12 @@ class Dashboard extends CI_Controller {
 
 //dashboard
 	public function tambah(){
-               
+         $v_data['template'] = '
+         <link href="'.base_url().'assets/dashboard5/navbar-top-fixed.css" rel="stylesheet">';
+
+        $v_data['is_aktif'] = 'tambah';
+        $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
+
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
             'required' => 'Form tidak boleh kosong!',
         ]);
@@ -43,12 +50,10 @@ class Dashboard extends CI_Controller {
 
         
         if($this->form_validation->run() == false){
-            $v_data['title'] = '<title>SIG | Pasar Tradisional </title>';
-            $v_data['opsi'] = "<a class='btn btn-outline-info mr-3' href='".base_url()."dashboard'> Kembali </a>";
-            $this->load->view('templates/header_dashboard', $v_data);
-            $this->load->view('templates/load_template_footer');
+            
+            $this->load->view('templates/header_dashboardv5', $v_data);
             $this->load->view('v_dashboard/tambah');
-            $this->load->view('templates/footer_dashboard', $v_data);
+            $this->load->view('templates/footer_dashboardv5', $v_data);
         }else{
             $v_nama     = $this->input->post('nama');
             $v_alamat = $this->input->post('alamat');

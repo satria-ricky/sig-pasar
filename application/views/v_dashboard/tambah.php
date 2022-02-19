@@ -1,110 +1,101 @@
 
-<main>
-	<div class="container-fluid" style="margin-top: 60px;">
+<main class="container">
+  <div class="bg-light p-3 rounded ">
+    <h1 class="middle">Tambah Data Pasar </h1>
+    <div class="card">
+      <div class="card-body">
+  
+      <?= form_open_multipart(); ?>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Nama pasar*</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>">
+          <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Alamat*</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="text" class="form-control" name="alamat" value="<?= set_value('alamat'); ?>">
+          <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Jam buka*</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="time" class="form-control" name="jam_buka" value="<?= set_value('jam_buka'); ?>">
+          <?= form_error('jam_buka', '<small class="text-danger">', '</small>'); ?>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Jam tutup*</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="time" class="form-control" name="jam_tutup" value="<?= set_value('jam_tutup');?>"> 
+          <?= form_error('jam_tutup', '<small class="text-danger">', '</small>'); ?>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Deskripsi</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <textarea class="form-control" name="deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-1 mb-0">Foto pasar</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <input type="file" class="form-control-file" name="foto" accept="image/*" id="exampleFormControlFile1">
+        </div>
+      </div>
 
-<div class="card">
-    
-    
-            <div class="card-header">
-            
-                <h4>Tambah data pasar</h4>      
-              
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h4 class="mt-1 mb-0">Pilih lokasi*</h4>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <div class="btn-group">
+            <div class="form-group"> 
+              <input type="text" class="form-control" name="latitude" id="Latitude" value="<?= set_value('latitude'); ?>" readonly="" placeholder="Latitude">
             </div>
-
-              <div class="card-body">
-            
-              
-              <?= form_open_multipart(); ?>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Nama pasar*</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="nama" value="<?= set_value('nama'); ?>">
-                  <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Alamat*</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" name="alamat" value="<?= set_value('alamat'); ?>">
-                  <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Jam buka*</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="time" class="form-control" name="jam_buka" value="<?= set_value('jam_buka'); ?>">
-                  <?= form_error('jam_buka', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Jam tutup*</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="time" class="form-control" name="jam_tutup" value="<?= set_value('jam_tutup');?>"> 
-                  <?= form_error('jam_tutup', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-2 mb-0">Deskripsi</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <textarea class="form-control" name="deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mt-1 mb-0">Foto pasar</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="file" class="form-control-file" name="foto" accept="image/*" id="exampleFormControlFile1">
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h4 class="mt-1 mb-0">Pilih lokasi*</h4>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <div class="btn-group">
-                    <div class="form-group mr-1"> 
-                      <input type="text" class="form-control" name="latitude" id="Latitude" value="<?= set_value('latitude'); ?>" readonly="" placeholder="Latitude">
-                    </div>
-                    <div class="form-group mr-1">  
-                      <input type="text" class="form-control" name="longitude" id="Longitude" value="<?= set_value('longitude'); ?>" readonly="" placeholder="Longitude">
-                    </div>
-                  </div>
-                  <?= form_error('latitude', '<small class="text-danger">', '</small>'); ?>
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <div class="col-sm-4">
-                <button type="button" class="btn btn-outline-info" onclick="getLocation()">Gunakan lokasi terkini</button>
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <div id="mapid" style="width:100%;"></div>
-              </div>
-
-              <div class="row ml-auto">
-                <button class="btn btn-primary" type="button" id="tambah"> Tambah </button>
-                  
-              </div>
-              <?= form_close(); ?>
+            <div class="form-group" style="margin-left: 5px;">  
+              <input type="text" class="form-control" name="longitude" id="Longitude" value="<?= set_value('longitude'); ?>" readonly="" placeholder="Longitude">
             </div>
           </div>
+          <?= form_error('latitude', '<small class="text-danger">', '</small>'); ?>
         </div>
+      </div>
 
-</body>
+      <div class="row mb-3">
+        <div class="col-sm-4">
+        <button type="button" class="btn btn-outline-info" onclick="getLocation()">Gunakan lokasi terkini</button>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div id="mapid" style="width:100%;"></div>
+      </div>
+
+      <div class="row ml-auto">
+        <button class="btn btn-primary" type="button" id="tambah"> Tambah </button>
+          
+      </div>
+      <?= form_close(); ?>
+    </div>
+  </div>
+  </div>
+</main>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 

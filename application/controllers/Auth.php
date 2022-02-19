@@ -16,7 +16,7 @@ class Auth extends CI_Controller {
         echo json_encode($data);
     }
 
-    public function index(){
+    public function login(){
 
         // if ($this->session->userdata('id_username')) {
         //     redirect('c_profile');
@@ -29,31 +29,24 @@ class Auth extends CI_Controller {
             'required' => 'Form tidak boleh kosong!'
         ]);
 
-        $v_data['title'] = 'Sign in';
+    
+        $v_username = $this->input->post('username');
+        $v_password = $this->input->post('password');
+        $v_admin = $this->M_read->auth($v_username, $v_password);
 
+        if ($v_admin){
+            $v_id_admin = $this->M_read->select_admin_by_username($v_username);
+            $v_data['id_username'] = $v_admin['admin_id'];
+            $this->session->set_userdata($v_data);
+            redirect('admin');
 
-
-        if($this->form_validation->run() == false){
-            $this->load->view('v_login/index', $v_data);
-
-        }else{
-
-            $v_username = $this->input->post('username');
-            $v_password = $this->input->post('password');
-            $v_admin = $this->M_read->auth($v_username, $v_password);
-
-            if ($v_admin){
-                $v_id_admin = $this->M_read->select_admin_by_username($v_username);
-                $v_data['id_username'] = $v_admin['admin_id'];
-                $this->session->set_userdata($v_data);
-                redirect('admin');
-
-            }else {
-                $this->session->set_flashdata('error', 'Username dan password salah!');
-                redirect('auth');
-            }
-
-        }  
+        }else {
+            $this->session->set_flashdata('error', 'Username dan password salah!');
+            echo"<script>
+                window.history.go(-1)
+            </script>
+            ";
+        }
     }
 
 
