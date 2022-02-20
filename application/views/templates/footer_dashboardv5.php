@@ -21,43 +21,43 @@
                   
   <div class="modal-body">
     
-              <div style="text-align: center;">
-                <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
-              </div>
-              <div class="form-group"> 
-                  <label for="basic-url">Nama : </label>
-                  <div class="form-control" id="nama_detail"></div>
-              </div>
-              <div class="form-group">
-                <label for="basic-url ">Alamat</label>
-                  <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="alamat_detail"></div>
-              </div>
-              <div class="form-group">
-                <label for="basic-url ">Jam buka</label>
-                  <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="buka_detail"></div>
-              </div>
-              <div class="form-group">
-                <label for="basic-url ">Jam tutup</label>
-                  <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="tutup_detail"></div>
-              </div>
-              <div class="form-group"> 
-                  <label for="basic-url">Deskripsi </label>
-                  <div class="form-control" id="deskripsi_detail"></div>
-              </div>
-              <div class="form-group"> 
-                  <label for="basic-url">Status</label>
-                  <div class="form-control" id="status_detail"></div>
-              </div>
-              <input type="hidden" id="id_modal">
-              
-            <div class="modal-footer">
-              <button class="btn btn-focus" type="button" data-dismiss="modal">Kembali</button>
-            </div>
-                           
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div style="text-align: center;">
+      <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
+    </div>
+    <div class="form-group"> 
+        <label for="basic-url">Nama : </label>
+        <div class="form-control" id="nama_detail"></div>
+    </div>
+    <div class="form-group">
+      <label for="basic-url ">Alamat</label>
+        <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="alamat_detail"></div>
+    </div>
+    <div class="form-group">
+      <label for="basic-url ">Jam buka</label>
+        <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="buka_detail"></div>
+    </div>
+    <div class="form-group">
+      <label for="basic-url ">Jam tutup</label>
+        <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="tutup_detail"></div>
+    </div>
+    <div class="form-group"> 
+        <label for="basic-url">Deskripsi </label>
+        <div class="form-control" id="deskripsi_detail"></div>
+    </div>
+    <div class="form-group"> 
+        <label for="basic-url">Status</label>
+        <div class="form-control" id="status_detail"></div>
+    </div>
+    <input type="hidden" id="id_modal">
+    
+  <div class="modal-footer">
+    <button class="btn btn-focus" type="button" data-dismiss="modal">Kembali</button>
+  </div>
+                 
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

@@ -55,7 +55,7 @@
           <h6 class="mt-1 mb-0">Foto pasar</h6>
         </div>
         <div class="col-sm-9 text-secondary">
-          <input type="file" class="form-control-file" name="foto" accept="image/*" id="exampleFormControlFile1">
+          <input type="file" class="form-control-file" name="foto[]" accept="image/*" id="exampleFormControlFile1" multiple="">
         </div>
       </div>
 

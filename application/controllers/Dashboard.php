@@ -70,31 +70,43 @@ class Dashboard extends CI_Controller {
             }
             if($upload_foto){
                 
-                $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size']     = '15000';
-                $config['upload_path'] = './assets/foto/pasar/';
+                $upload_foto = count($_FILES['foto']['name']);
+                for ($i = 0; $i < $upload_foto; $i++) {
                     
-                $this->load->library('upload', $config);
+                    $_FILES['file']['name'] = $_FILES['foto']['name'][$i];
+                    $_FILES['file']['type'] = $_FILES['foto']['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES['foto']['tmp_name'][$i];
+                    $_FILES['file']['size'] = $_FILES['foto']['size'][$i];
 
-                if ($this->upload->do_upload('foto')){
-                    $v_nama_foto = $this->upload->data('file_name');             
-                    $v_data = [
-                        'pasar_nama' => $v_nama,
-                        'pasar_alamat' => $v_alamat,
-                        'longitude' => $v_longitude,
-                        'latitude' => $v_latitude,
-                        'pasar_jam_buka' => $v_jam_buka,
-                        'pasar_jam_tutup' => $v_jam_tutup,
-                        'pasar_deskripsi' => $v_deskripsi,
-                        'pasar_status' => '2',
-                        'pasar_foto' => $v_nama_foto
-                    ];
-                }
-                else
-                {
-                    echo $this->upload->display_errors();
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config['max_size']     = '15000';
+                    $config['upload_path'] = './assets/foto/pasar/';
+                        
+                    $this->load->library('upload', $config);
+
+                    if ($this->upload->do_upload('foto')){
+
+                        $v_nama_foto[$i] = $this->upload->data('file_name');  
+   
+                    }
+                    // else
+                    // {
+                    //     echo $this->upload->display_errors();
+                    // }
+
                 }
 
+                $v_data = [
+                    'pasar_nama' => $v_nama,
+                    'pasar_alamat' => $v_alamat,
+                    'longitude' => $v_longitude,
+                    'latitude' => $v_latitude,
+                    'pasar_jam_buka' => $v_jam_buka,
+                    'pasar_jam_tutup' => $v_jam_tutup,
+                    'pasar_deskripsi' => $v_deskripsi,
+                    'pasar_status' => '2',
+                    'pasar_foto' => $v_nama_foto
+                ];
             }else{
                 $v_data = [
                     'pasar_nama' => $v_nama,
