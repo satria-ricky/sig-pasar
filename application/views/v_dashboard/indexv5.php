@@ -1,6 +1,4 @@
 
-
-
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -113,7 +111,16 @@ function getData_peta(){
               
               marker = new L.Marker(new L.latLng(titik_koordinat), {title: nama_pasar, icon:icon_map});
 
-              marker.bindPopup("<b>"+data[i].pasar_nama+"</b><br>"+data[i].pasar_alamat+"<br> <div class='row ml-1'><h6><button class='btn btn-sm btn-outline-info' onclick='detail("+data[i].pasar_id+")'>Detail</button></h6><h6><a href='https://www.google.com/maps/dir/?api=1&origin="+location.coords.latitude+","+location.coords.longitude+"&destination="+data[i].latitude+","+data[i].longitude+"' class='btn btn-sm btn-outline-success' target='_blank'>Rute</a></h6></div>");
+              marker.bindPopup(`
+                <div class="card" style="width: 15rem; height:12rem;">
+                  <div class="card-body">
+                    <h3 class="card-title">`+data[i].pasar_nama+`</h3>
+                    <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-alarm-clock"></i> `+data[i].pasar_jam_buka+` - `+data[i].pasar_jam_tutup+`</h6>
+                    <p class="card-text">`+data[i].pasar_alamat+`, `+data[i].pasar_deskripsi+`</p>
+                    <a onclick="button_detail(`+data[i].pasar_id+`)" type="button" class="btn btn-outline-primary"><i class="far fa-info-circle"></i> Detail</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&origin=`+location.coords.latitude+`,`+location.coords.longitude+`&destination=`+data[i].latitude+`,`+data[i].longitude+`" target='_blank' type="button" class="btn btn-outline-success"> <i class="fas fa-map-marked-alt"></i> Rute</a>
+                  </div>
+                </div>`);
               
               markersLayer.addLayer(marker);
 
@@ -121,6 +128,7 @@ function getData_peta(){
           }
 
         });
+
 
 
         

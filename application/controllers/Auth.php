@@ -52,8 +52,8 @@ class Auth extends CI_Controller {
 
     public function logout(){
         $this->session->unset_userdata('id_username');
-        $this->session->set_flashdata('logout', 'Berhasil logout !');
-        redirect('auth');
+        $this->session->set_flashdata('pesan', 'Berhasil logout !');
+        redirect('dashboard');
     }
 
     public function blocked(){

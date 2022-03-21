@@ -5,7 +5,7 @@
     <div class="card">
       <div class="card-body">
   
-      <?= form_open_multipart(); ?>
+      <form id="form_tambah" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/tambah'); ?>">
       <div class="row mb-3">
         <div class="col-sm-3">
           <h6 class="mt-2 mb-0">Nama pasar*</h6>
@@ -44,7 +44,16 @@
       </div>
       <div class="row mb-3">
         <div class="col-sm-3">
-          <h6 class="mt-2 mb-0">Deskripsi</h6>
+          <h6 class="mt-2 mb-0">Produk yg ada di pasar*</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+          <textarea class="form-control" name="produk" value="<?= set_value('produk'); ?>"></textarea>
+          <?= form_error('produk', '<small class="text-danger">', '</small>'); ?>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <h6 class="mt-2 mb-0">Deskripsi singkat pasar</h6>
         </div>
         <div class="col-sm-9 text-secondary">
           <textarea class="form-control" name="deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
@@ -55,7 +64,7 @@
           <h6 class="mt-1 mb-0">Foto pasar</h6>
         </div>
         <div class="col-sm-9 text-secondary">
-          <input type="file" class="form-control-file" name="foto[]" accept="image/*" id="exampleFormControlFile1" multiple="">
+          <input type="file" class="form-control-file" name="foto" accept="image/*" id="exampleFormControlFile1" multiple="">
         </div>
       </div>
 
@@ -86,18 +95,21 @@
         <div id="mapid" style="width:100%;"></div>
       </div>
 
-      <div class="row ml-auto">
-        <button class="btn btn-primary" type="button" id="tambah"> Tambah </button>
-          
+      <div class="row">
+        <div class="col-sm-3">
+          <button class="btn btn-primary" type="button" onclick="button_tambah()" value="Submit form"> <i class="fas fa-plus"></i> Tambah Data</button>
+        </div>
+        
       </div>
-      <?= form_close(); ?>
+
+      </form>
     </div>
   </div>
   </div>
 </main>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
     
@@ -164,43 +176,6 @@ function getLocation() {
 
 
 
-$('#tambah').click(function(e) {
-    swal({
-      title: 'Tambah data ?',
-      icon: 'warning',
-      buttons:{
-        confirm: {
-          text : 'Iya',
-          className : 'btn btn-success'
-        },
-        cancel: {
-          text : 'Tidak',
-          visible: true,
-          className: 'btn btn-focus'
-        }
-      }
-    }).then((Edit) => {
-      if (Edit) {
-        $('form').submit();
-      } else {
-        swal.close();
-      }
-    });
-
-  });
-
 
 
 </script>
-<?php if($this->session->flashdata('pesan')){ ?>
-  <script>
-    swal("<?php echo $this->session->flashdata('pesan'); ?>", {
-        icon : "success",
-        buttons: {                  
-            confirm: {
-                className : 'btn btn-success'
-            }
-        },
-    });
-  </script>
-<?php } ?>

@@ -5,7 +5,7 @@
   </body>
 </html>
 
-<div class="modal modal-dialog modal-lg" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal modal-dialog modal-lg" id="" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 <div class="modal-dialog">
   
 <div class="modal-content" >
@@ -22,7 +22,7 @@
   <div class="modal-body">
     
     <div style="text-align: center;">
-      <img src="" id="foto_detail" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
+      <img src="" id="" alt="" class="avatar avatar-xxl rounded" style="width: 200px; height: 230px;" >
     </div>
     <div class="form-group"> 
         <label for="basic-url">Nama : </label>
@@ -73,7 +73,7 @@
         <div class="mb-2" style="display: flex;flex-direction: column; justify-content: center;align-items: center; text-align: center;">
           <img src="<?= base_url('assets/foto/pasar/'); ?>default.png" alt="" width="200" height="200">
         </div>
-        <form method="post" action="<?= base_url('auth'); ?>/login">
+        <form method="post" action="<?= base_url('auth'); ?>/login" id="form_login">
           <div class="form-floating mb-3">
             <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Username" name="username" required="">
             <label for="floatingInput">Username</label>
@@ -90,8 +90,47 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" id="modal_detail">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail Data Pasar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="card mb-3">
+          <img src="" id="foto_detail" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Lihat Rute</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>               
 <script src="<?= base_url('assets/dashboard5/'); ?>assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<?php if($this->session->flashdata('pesan')){ ?>
+  <script>
+    swal("<?php echo $this->session->flashdata('pesan'); ?>", {
+        icon : "success",
+        buttons: {                  
+            confirm: {
+                className : 'btn btn-success'
+            }
+        },
+    });
+  </script>
+<?php } ?>
 
 <?php if($this->session->flashdata('error')){ ?>
   <script>
@@ -106,21 +145,76 @@
   </script>
 <?php } ?>
 
-<?php if($this->session->flashdata('logout')){ ?>
-  <script>
-    swal("<?php echo $this->session->flashdata('logout'); ?>", {
-        icon : "success",
-        buttons: {                  
-            confirm: {
-                className : 'btn btn-success'
-            }
-        },
-    });
-  </script>
-<?php } ?>
-
 <script type="text/javascript">
-  function login(){
+
+
+  function buton_login(){
     $('#modal_login').modal('show');
   }
+
+  function button_detail(e){
+    $('#modal_detail').modal('show');
+    // console.log(e);
+    $.ajax({
+        method: 'get',
+        url: "<?php echo base_url(); ?>auth/detail_pasar",
+        data: {
+            id: e
+        },
+        dataType: "json",
+        success: function(data) {
+
+          // console.log(data);
+          var url_foto = "<?= base_url(); ?>assets/foto/pasar/"+data.pasar_foto;
+      
+          $('#foto_detail').attr("src",url_foto);
+          $('#nama_detail').html(data.pasar_nama);
+          $('#alamat_detail').html(data.pasar_alamat);
+          $('#buka_detail').html(data.pasar_jam_buka);
+          $('#tutup_detail').html(data.pasar_jam_tutup);
+
+          if (data.pasar_status == "1") {
+            var status_content = '<h5><span class="badge badge-success"> '+data.stts_nama+' </span></h5>';
+          }else{
+            var status_content = '<h5><span class="badge badge-danger"> '+data.stts_nama+'</span></h5>';
+          }
+
+          $('#status_detail').html(status_content);
+
+          $('#deskripsi_detail').html(data.pasar_deskripsi);
+
+          document.getElementById('id_modal').value = data.pasar_id;
+        }
+
+    });   
+
+  }
+
+  function button_tambah(){
+    swal({
+      title: 'Tambah data ?',
+      icon: 'warning',
+      buttons:{
+        confirm: {
+          text : 'Iya',
+          className : 'btn btn-success'
+        },
+        cancel: {
+          text : 'Tidak',
+          visible: true,
+          className: 'btn btn-focus'
+        }
+      }
+    }).then((Tambah) => {
+      if (Tambah) {
+        document.getElementById("form_tambah").submit();
+        console.log('form_tambah');
+      } else {
+        swal.close();
+      }
+    });
+  }
+
+  
+
 </script>

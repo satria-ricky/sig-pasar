@@ -61,14 +61,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link <?= ($is_aktif === 'home') ? 'active' : '' ?>" aria-current="page" href="<?= base_url(); ?>">Home</a>
+          <a class="nav-link <?= ($is_aktif === 'home') ? 'active' : '' ?>" aria-current="page" href="<?= base_url(); ?>">PETA LOKASI</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= ($is_aktif === 'tambah') ? 'active' : '' ?>" href="<?= base_url(); ?>dashboard/tambah">Tambah Data</a>
+          <a class="nav-link <?= ($is_aktif === 'tambah') ? 'active' : '' ?>" href="<?= base_url(); ?>dashboard/tambah">TAMBAH DATA LOKASI</a>
         </li>
       </ul>
       <div class="d-flex">
-        <button class="btn btn-outline-info" onclick="login()">Login</button>
+        <button class="btn btn-outline-info" onclick="buton_login()">Login</button>
       </div>
     </div>
   </div>

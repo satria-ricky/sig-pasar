@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2021 pada 08.52
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.26
+-- Waktu pembuatan: 20 Feb 2022 pada 09.28
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `tb_admin` (
 --
 
 INSERT INTO `tb_admin` (`admin_id`, `admin_username`, `admin_password`, `admin_nama`, `admin_alamat`, `admin_foto`) VALUES
-(25, 'user2', 'user2', 'zaenalabidin', 'ampenan', 'WhatsApp_Image_2021-05-27_at_19_40_08.jpeg');
+(25, 'admin1', 'admin1', 'zaenalabidin', 'ampenan', 'profil.jpg');
 
 -- --------------------------------------------------------
 
