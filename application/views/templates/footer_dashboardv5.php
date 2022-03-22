@@ -26,11 +26,11 @@
     </div>
     <div class="form-group"> 
         <label for="basic-url">Nama : </label>
-        <div class="form-control" id="nama_detail"></div>
+        <div class="form-control" id=""></div>
     </div>
     <div class="form-group">
       <label for="basic-url ">Alamat</label>
-        <div class="border rounded pl-2 pb-2 pt-2 pr-2" id="alamat_detail"></div>
+        <div class="border rounded pl-2 pb-2 pt-2 pr-2" id=""></div>
     </div>
     <div class="form-group">
       <label for="basic-url ">Jam buka</label>
@@ -42,7 +42,7 @@
     </div>
     <div class="form-group"> 
         <label for="basic-url">Deskripsi </label>
-        <div class="form-control" id="deskripsi_detail"></div>
+        <div class="form-control" id=""></div>
     </div>
     <div class="form-group"> 
         <label for="basic-url">Status</label>
@@ -91,7 +91,7 @@
 
 
 <div class="modal fade" tabindex="-1" id="modal_detail">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Detail Data Pasar</h5>
@@ -99,18 +99,33 @@
       </div>
       <div class="modal-body">
 
-        <div class="card mb-3">
+        <div class="card">
           <img src="" id="foto_detail" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h1 class="card-title" id="nama_detail"></h1>
+            <div class="row g-0 ">
+              <div class="col-6 col-md-4"><i class="far fa-alarm-clock"></i> <u>Buka/Tutup</u></div>
+              <div class="col-sm-6 col-md-8" id="jam_detail"></div>
+            </div>
+            <div class="row g-0">
+              <div class="col-6 col-md-4"><i class="far fa-map-marker-alt"></i> <u>Alamat</u></div>
+              <div class="col-sm-6 col-md-8"> <p class="card-text" id="alamat_detail"></p> </div>
+            </div>
+            <div class="row g-0">
+              <div class="col-6 col-md-4"><i class="far fa-info-square"></i> <u>Deskripsi</u></div>
+              <div class="col-sm-6 col-md-8"> <p class="card-text" id="deskripsi_detail"></p> </div>
+            </div>
+            <div class="row g-0">
+              <div class="col-6 col-md-4"><i class="far fa-bags-shopping"></i> <u>Produk</u></div>
+              <div class="col-sm-6 col-md-8"> <p class="card-text" id="produk_detail"></p> </div>
+            </div>
+            
           </div>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Lihat Rute</button>
+        <a href="" id="rute_detail" target='_blank' class="btn btn-success"><i class="fas fa-map-marked-alt"></i> Lihat Rute</a>
       </div>
     </div>
   </div>
@@ -152,9 +167,8 @@
     $('#modal_login').modal('show');
   }
 
-  function button_detail(e){
+  function button_detail(e,lat,long){
     $('#modal_detail').modal('show');
-    // console.log(e);
     $.ajax({
         method: 'get',
         url: "<?php echo base_url(); ?>auth/detail_pasar",
@@ -164,26 +178,23 @@
         dataType: "json",
         success: function(data) {
 
-          // console.log(data);
           var url_foto = "<?= base_url(); ?>assets/foto/pasar/"+data.pasar_foto;
       
           $('#foto_detail').attr("src",url_foto);
           $('#nama_detail').html(data.pasar_nama);
           $('#alamat_detail').html(data.pasar_alamat);
-          $('#buka_detail').html(data.pasar_jam_buka);
-          $('#tutup_detail').html(data.pasar_jam_tutup);
-
-          if (data.pasar_status == "1") {
-            var status_content = '<h5><span class="badge badge-success"> '+data.stts_nama+' </span></h5>';
-          }else{
-            var status_content = '<h5><span class="badge badge-danger"> '+data.stts_nama+'</span></h5>';
-          }
-
-          $('#status_detail').html(status_content);
+          $('#jam_detail').html(data.pasar_jam_buka+' - '+data.pasar_jam_tutup);
+          var url_rute = 'https://www.google.com/maps/dir/?api=1&origin='+lat+','+long+'&destination='+data.latitude+','+data.longitude+'';
+          $('#rute_detail').attr("href", url_rute)
+          // if (data.pasar_status == "1") {
+          //   var status_content = '<h5><span class="badge badge-success"> '+data.stts_nama+' </span></h5>';
+          // }else{
+          //   var status_content = '<h5><span class="badge badge-danger"> '+data.stts_nama+'</span></h5>';
+          // }
 
           $('#deskripsi_detail').html(data.pasar_deskripsi);
-
-          document.getElementById('id_modal').value = data.pasar_id;
+          $('#produk_detail').html(data.pasar_produk);
+          // document.getElementById('id_modal').value = data.pasar_id;
         }
 
     });   
